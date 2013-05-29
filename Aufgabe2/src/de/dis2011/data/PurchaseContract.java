@@ -52,7 +52,7 @@ public class PurchaseContract extends Contract {
 		Connection con = DB2ConnectionManager.getInstance().getConnection();
 
 		try {
-			String insertSQL = "INSERT INTO PurchaseContract(ContractNo, NoOfIntallments, InterestRate, Purchaser, HouseID) VALUES (?, ?, ?, ?, ?)";
+			String insertSQL = "INSERT INTO PurchaseContract(ContractNo, NoOfInstallments, InterestRate, Purchaser, HouseID) VALUES (?, ?, ?, ?, ?)";
 
 			PreparedStatement pstmt = con.prepareStatement(insertSQL,
 					Statement.RETURN_GENERATED_KEYS);
@@ -77,7 +77,7 @@ public class PurchaseContract extends Contract {
 		try {
 			Connection con = DB2ConnectionManager.getInstance().getConnection();
 
-			String selectSQL = "SELECT * FROM Contract, PurchaseContract WHERE Contract.ID = ? and Contract.ID = PurchaseContract.ID";
+			String selectSQL = "SELECT * FROM Contract, PurchaseContract WHERE Contract.ContractNo = ? and Contract.ContractNo = PurchaseContract.ContractNo";
 			PreparedStatement pstmt = con.prepareStatement(selectSQL);
 			pstmt.setInt(1, id);
 
@@ -85,6 +85,7 @@ public class PurchaseContract extends Contract {
 			if (rs.next()) {
 				ret = new PurchaseContract();
 				ret.setContractNo(id);
+				ret.setDate(rs.getDate("CDate"));
 				ret.setPlace(rs.getString("Place"));
 				ret.setNoi(rs.getInt("NoOfInstallments"));
 				ret.setInterestRate(rs.getDouble("InterestRate"));

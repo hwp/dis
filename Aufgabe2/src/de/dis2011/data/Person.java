@@ -93,7 +93,7 @@ public class Person {
 
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {
-					setId(rs.getInt("ID"));
+					setId(rs.getInt(1));
 				}
 
 				rs.close();

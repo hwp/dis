@@ -31,9 +31,9 @@ public abstract class Contract {
 		return date;
 	}
 
-	// private void setDate(Date date) {
-	// this.date = date;
-	// }
+	protected void setDate(Date date) {
+		this.date = date;
+	}
 
 	public String getPlace() {
 		return place;
@@ -47,7 +47,7 @@ public abstract class Contract {
 		Connection con = DB2ConnectionManager.getInstance().getConnection();
 
 		try {
-			String insertSQL = "INSERT INTO Contract(Date, Place) VALUES (?, ?)";
+			String insertSQL = "INSERT INTO Contract(CDate, Place) VALUES (?, ?)";
 
 			PreparedStatement pstmt = con.prepareStatement(insertSQL,
 					Statement.RETURN_GENERATED_KEYS);
@@ -78,16 +78,13 @@ public abstract class Contract {
 
 			Statement stmt = con.createStatement();
 
-			ResultSet rs = stmt.executeQuery("select ID from Contract");
+			ResultSet rs = stmt.executeQuery("select ContractNo from Contract");
 			while (rs.next()) {
-				ids.add(rs.getInt("ID"));
+				ids.add(rs.getInt("ContractNo"));
 			}
 
 			rs.close();
 			stmt.close();
-
-			con.commit();
-			con.close();
 
 			for (int id : ids) {
 				load(id).printInfo(out);

@@ -88,7 +88,7 @@ public class TenancyContract extends Contract {
 		try {
 			Connection con = DB2ConnectionManager.getInstance().getConnection();
 
-			String selectSQL = "SELECT * FROM Contract, TenancyContract WHERE Contract.ID = ? and Contract.ID = TenancyContract.ID";
+			String selectSQL = "SELECT * FROM Contract, TenancyContract WHERE Contract.ContractNo = ? and Contract.ContractNo = TenancyContract.ContractNo";
 			PreparedStatement pstmt = con.prepareStatement(selectSQL);
 			pstmt.setInt(1, id);
 
@@ -96,6 +96,7 @@ public class TenancyContract extends Contract {
 			if (rs.next()) {
 				ret = new TenancyContract();
 				ret.setContractNo(id);
+				ret.setDate(rs.getDate("CDate"));
 				ret.setPlace(rs.getString("Place"));
 				ret.setStartDate(rs.getDate("StartDate"));
 				ret.setDuration(rs.getString("Duration"));

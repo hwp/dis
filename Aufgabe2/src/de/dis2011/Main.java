@@ -69,6 +69,7 @@ public class Main {
 		mainMenu.addEntry("Create Person", CREATE_PERSON);
 		mainMenu.addEntry("Sign Purchase Contract", SIGN_PURCHASE_CONTRACT);
 		mainMenu.addEntry("Sign Tenancy Contract", SIGN_TENANCY_CONTRACT);
+		mainMenu.addEntry("Show all Contracts", SHOW_CONTRACTS);
 		mainMenu.addEntry("Quit", QUIT);
 
 		// Processing input
@@ -92,7 +93,6 @@ public class Main {
 			}
 		}
 	}
-
 
 	private static void signTenancyContract() {
 		TenancyContract cont = new TenancyContract();

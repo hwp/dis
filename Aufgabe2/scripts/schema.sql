@@ -64,7 +64,7 @@ create table TenancyContract ( \
   Tenant int not null, \
   AptID int not null, \
   foreign key(ContractNo) references Contract(ContractNo), \
-  foreign key(Tendencer) references Person(ID), \
+  foreign key(Tenant) references Person(ID), \
   foreign key(AptID) references Apartment(ID) \
 )
 
