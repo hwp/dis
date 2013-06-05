@@ -12,7 +12,7 @@
 		<property name="strasse" type="string" column="strasse" />
 		<property name="hausnummer" type="string" column="hausnummer" />
 		<property name="flaeche" type="integer" column="flaeche" />
-		<many-to-one name="verwalter" class="de.dis2013.data.Makler" column="verwalter" not-null="true" />
+		<many-to-one name="verwalter" class="de.dis2013.data.Makler" column="verwalter" not-null="true" fetch="join"/>
 		
 		<joined-subclass name="de.dis2013.data.Haus" table="haeuser">
 			<key column="id" />

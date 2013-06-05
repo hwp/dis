@@ -10,13 +10,13 @@
 		<property name="ort" type="string" column="ort" />
 		<property name="datum" type="date" column="datum" />
 		<property name="vertragsnummer" type="int" column="vertragsnummer" />
-		<many-to-one name="vertragspartner" class="de.dis2013.data.Person" column="vertragspartner" not-null="true" />
+		<many-to-one name="vertragspartner" class="de.dis2013.data.Person" column="vertragspartner" not-null="true" fetch="join"/>
 		
 		<joined-subclass name="de.dis2013.data.Kaufvertrag" table="kaufvertrag">
 			<key column="id" />
 			<property name="anzahlRaten" type="integer" column="anzahlRaten" />
 			<property name="ratenzins" type="integer" column="ratenzins" />
-			<many-to-one name="haus" class="de.dis2013.data.Haus" column="haus" not-null="true" />
+			<many-to-one name="haus" class="de.dis2013.data.Haus" column="haus" not-null="true" fetch="join"/>
 		</joined-subclass>
 		
 		<joined-subclass name="de.dis2013.data.Mietvertrag" table="mietvertrag">
@@ -24,7 +24,7 @@
 			<property name="dauer" type="integer" column="dauer" />
 			<property name="mietbeginn" type="date" column="mietbeginn" />
 			<property name="nebenkosten" type="integer" column="nebenkosten" />			
-			<many-to-one name="wohnung" class="de.dis2013.data.Wohnung" column="wohnung" not-null="true" />
+			<many-to-one name="wohnung" class="de.dis2013.data.Wohnung" column="wohnung" not-null="true" fetch="join"/>
 		</joined-subclass>
 	</class>
 </hibernate-mapping>

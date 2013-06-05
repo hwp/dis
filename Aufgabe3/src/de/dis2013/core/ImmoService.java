@@ -190,8 +190,8 @@ public class ImmoService {
 		session.beginTransaction();
 		Set<Haus> r = new HashSet<Haus>(
 				session.createQuery(
-						"select Haus from Haus as h where h.verwalter = ?")
-						.setEntity(1, m).list());
+						"from Haus as h where h.verwalter = ?")
+						.setEntity(0, m).list());
 		session.getTransaction().commit();
 		session.close();
 		return r;
@@ -253,8 +253,8 @@ public class ImmoService {
 		session.beginTransaction();
 		Set<Wohnung> r = new HashSet<Wohnung>(
 				session.createQuery(
-						"From Wohnung as w where w.verwalter = ?")
-						.setEntity(1, m).list());
+						"from Wohnung as w where w.verwalter = ?")
+						.setEntity(0, m).list());
 		session.getTransaction().commit();
 		session.close();
 		return r;
@@ -371,8 +371,8 @@ public class ImmoService {
 		session.beginTransaction();
 		Set<Mietvertrag> r = new HashSet<Mietvertrag>(
 				session.createQuery(
-						"select Mietvertrag from Mietvertrag as vetrag, Immobilie as immo where vertrag.wohnung = immo and immo.verwalter = ?")
-						.setEntity(1, m).list());
+						"select v from Mietvertrag as v, Wohnung as w where v.wohnung = w and w.verwalter = ?")
+						.setEntity(0, m).list());
 		session.getTransaction().commit();
 		session.close();
 		return r;
@@ -390,8 +390,8 @@ public class ImmoService {
 		session.beginTransaction();
 		Set<Kaufvertrag> r = new HashSet<Kaufvertrag>(
 				session.createQuery(
-				"select Kaufvertrag from Kaufvertrag as vetrag, Immobilie as immo where vertrag.haus = immo and immo.verwalter = ?")
-				.setEntity(1, m).list());
+				"select v from Kaufvertrag as v, Haus as h where v.haus = h and h.verwalter = ?")
+				.setEntity(0, m).list());
 		session.getTransaction().commit();
 		session.close();
 		return r;

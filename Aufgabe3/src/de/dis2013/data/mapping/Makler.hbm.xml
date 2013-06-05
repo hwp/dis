@@ -12,7 +12,7 @@
 		<property name="login" type="string" column="login" />
 		<property name="passwort" type="string" column="passwort" />
 		
-		<set name="immobilien" inverse="true">
+		<set name="immobilien" inverse="true" fetch="join">
 			<key column="verwalter" />
 			<one-to-many class="de.dis2013.data.Immobilie" />
 		</set>
