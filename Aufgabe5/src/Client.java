@@ -21,7 +21,9 @@ public class Client extends Thread {
 			}
 			pm.write(tid, offset + i, name + " entry " + i);
 		}
-		pm.commit(tid);
+		if (Math.random() < 0.8) {
+			pm.commit(tid);
+		}
 	}
 
 }
