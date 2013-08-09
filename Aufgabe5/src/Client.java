@@ -13,6 +13,7 @@ public class Client extends Thread {
 	public void run() {
 		PersistanceManager pm = PersistanceManager.getInstance();
 		int tid = pm.beginTransaction();
+		System.err.println("Tranaction " + tid + " begin");
 		for (int i = 0; i < size; i++) {
 			try {
 				long interval = (long) (500 * (.5 + Math.random()));
@@ -23,6 +24,10 @@ public class Client extends Thread {
 		}
 		if (Math.random() < 0.8) {
 			pm.commit(tid);
+			System.err.println("Tranaction " + tid + " commit");
+		}
+		else{
+			System.err.println("Tranaction " + tid + " aborted without commit");
 		}
 	}
 
